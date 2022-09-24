@@ -1,0 +1,27 @@
+<div class="page-wapper">
+  <div class="search-wrapper">
+    <mat-form-field class="search-form-field" appearance="outline">
+      <mat-label>Search GIF</mat-label>
+      <input matInput type="text" [(ngModel)]="searchText">
+      <!-- <button *ngIf="searchText" matSuffix mat-icon-button aria-label="Clear" (click)="resetSearch()">
+        <mat-icon fontIcon="close"></mat-icon>
+      </button> -->
+      <button matSuffix mat-icon-button aria-label="Search" (click)="search()">
+        <mat-icon fontIcon="search"></mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <div class="result-panel">
+    <div *ngFor="let result of searchResult" class="reult-item">
+      <img [src]="result.images.fixed_width.url" [alt]="result.title">
+    </div>
+  </div>
+
+  <mat-paginator
+  [length]="totalCount"
+  [pageSize]="pageSize"
+
+  aria-label="Paginator" (page)="handlePageEvent($event)">
+  </mat-paginator>
+</div>
+
