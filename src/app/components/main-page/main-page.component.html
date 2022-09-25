@@ -2,17 +2,17 @@
   <div class="search-wrapper">
     <mat-form-field class="search-form-field" appearance="outline">
       <mat-label>Search GIF</mat-label>
-      <input matInput type="text" [(ngModel)]="searchText">
+      <input matInput type="text" [(ngModel)]="searchText" class="search-input">
       <!-- <button *ngIf="searchText" matSuffix mat-icon-button aria-label="Clear" (click)="resetSearch()">
         <mat-icon fontIcon="close"></mat-icon>
       </button> -->
-      <button matSuffix mat-icon-button aria-label="Search" (click)="search()">
+      <button matSuffix mat-icon-button aria-label="Search" (click)="search()" class="search-button">
         <mat-icon fontIcon="search"></mat-icon>
       </button>
     </mat-form-field>
   </div>
   <div class="result-panel">
-    <div *ngFor="let result of searchResult" class="reult-item">
+    <div *ngFor="let result of searchResult" class="result-item">
       <img [src]="result.images.fixed_width.url" [alt]="result.title">
     </div>
   </div>
