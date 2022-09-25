@@ -11,17 +11,19 @@
       </button>
     </mat-form-field>
   </div>
-  <div class="result-panel">
-    <div *ngFor="let result of searchResult" class="result-item">
-      <img [src]="result.images.fixed_width.url" [alt]="result.title">
+  <div class="result-wapper">
+
+    <mat-paginator
+    [length]="giphyService.totalCount"
+    [pageSize]="pageSize"
+
+    aria-label="Paginator" (page)="handlePageEvent($event)">
+    </mat-paginator>
+    <div class="result-panel">
+      <div *ngFor="let result of giphyService.searchResults$ | async" class="result-item">
+        <img [src]="result.images.fixed_width.url" [alt]="result.title">
+      </div>
     </div>
   </div>
-
-  <mat-paginator
-  [length]="totalCount"
-  [pageSize]="pageSize"
-
-  aria-label="Paginator" (page)="handlePageEvent($event)">
-  </mat-paginator>
 </div>
 

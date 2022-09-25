@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { GifData } from 'src/app/shared/gif.model';
 import { GiphyService } from 'src/app/shared/gyphy.service';
 
@@ -9,31 +10,20 @@ import { GiphyService } from 'src/app/shared/gyphy.service';
 })
 export class MainPageComponent implements OnInit {
   public searchText: string;
-  totalCount = 0;
-  pageSize = this.giphyService.pageSize;
-  pageIndex = 0;
-    searchResult: GifData[];
-
-
+  public totalCount = 0;
+  public pageSize = this.giphyService.pageSize;
+  public pageIndex = 0;
+  public searchResults$: Observable<GifData[]>
 
   constructor(public giphyService: GiphyService) {
-    this.giphyService.searchResults$.subscribe(data => {
-      this.searchResult = data;
-      this.totalCount = this.giphyService.totalCount;
-    }
-    )
-   }
+  }
 
   ngOnInit(): void {
-    this.giphyService.search('');
   }
   search() {
     this.giphyService.search(this.searchText);
   }
-  resetSearch () {
-    this.giphyService.search('')
-  }
-  handlePageEvent(event:any) {
+  handlePageEvent(event: any) {
     this.giphyService.pagination(event);
   }
 }
